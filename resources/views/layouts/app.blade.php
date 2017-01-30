@@ -14,7 +14,8 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-    <!-- Scripts -->
+    {{-- here custom styles for projects --}}
+    @yield('styles')
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'mail'], function () {
+  Route::get('/', 'MailController@showIndex');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
