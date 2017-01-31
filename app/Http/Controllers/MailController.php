@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\MailTemplate;
+
+use Illuminate\Http\Request;
+
 class MailController extends Controller
 {
 
@@ -67,5 +71,27 @@ class MailController extends Controller
     $result = $mailer->send($message);
 
     return $result;
+  }
+
+  /**
+   * create new email template
+   * @param  Request $request laravel built in tempalate request
+   * @return redirect           redirect to any route
+   */
+  public function createMailTemplate(Request $request) {
+    $template = new MailTemplate();
+    $template->slug = $request->slug;
+    $template->body = $request->body;
+    $template->attachments = $request->attachments;
+    $template->save();
+
+    if ($request->new === 'new') {
+      return redirect()->back([
+          'message' => 'Template ' . $$request->slug . ' created successfly',
+          'message_type' => 'success'
+        ]);
+    }
+
+    return redirect()->route('mail-new-template');
   }
 }
