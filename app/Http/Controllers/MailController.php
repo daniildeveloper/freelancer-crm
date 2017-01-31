@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\MailTemplate;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MailController extends Controller
 {
@@ -36,7 +36,7 @@ class MailController extends Controller
     $transport = \Swift_SmtpTransport::newInstance('smtp.mail.ru', 465, 'ssl')
       ->setUsername('crm.clone@mail.ru')
       ->setPassword('secretsecret');
-      
+
     $mailer = \Swift_Mailer::newInstance($transport);
 
     // $mailer = new \Swift_Mailer();
@@ -78,20 +78,56 @@ class MailController extends Controller
    * @param  Request $request laravel built in tempalate request
    * @return redirect           redirect to any route
    */
-  public function createMailTemplate(Request $request) {
-    $template = new MailTemplate();
-    $template->slug = $request->slug;
-    $template->body = $request->body;
+  public function createMailTemplate(Request $request)
+  {
+    $template              = new MailTemplate();
+    $template->slug        = $request->slug;
+    $template->body        = $request->body;
     $template->attachments = $request->attachments;
     $template->save();
 
     if ($request->new === 'new') {
       return redirect()->back([
-          'message' => 'Template ' . $$request->slug . ' created successfly',
-          'message_type' => 'success'
-        ]);
+        'message'      => 'Template ' . $$request->slug . ' created successfly',
+        'message_type' => 'success',
+      ]);
     }
 
     return redirect()->route('mail-new-template');
+  }
+
+  /**
+   * get some template by slugname
+   * @param  string $slug slug
+   * @return object       slug with props
+   */
+  public function getTemplateBySlug($slug)
+  {
+    $slugObj = DB::table('mail_templates')->where('slug', $slug)->get()[0];
+    return response()->json([
+      'slug'        => $slugObj->slug,
+      'body'        => $slugObj->body,
+      'attachments' => slugObj->attachments,
+    ]);
+  }
+
+  /**
+   * get list of all templates
+   * @return json list of templates
+   */
+  public function getAllTemplates()
+  {
+    $templates = DB::table('mail_templates')->get();
+    $res       = [];
+
+    foreach ($templates as $template) {
+      $t               = [];
+      $t['slug']       = $template->slug;
+      $t['body']       = $template->body;
+      $t['attacments'] = $template->attachments;
+      $res[]           = $t;
+    }
+
+    return response()->json($res);
   }
 }
