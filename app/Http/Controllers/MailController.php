@@ -14,6 +14,17 @@ class MailController extends Controller
     return view('mail.index');
   }
 
+/**
+ * Take all data from email form and send it to @param addresses
+ * @param  string $subject    Theme of email. Must be default love, but not is.
+ * @param  string $from_email Sender email
+ * @param  string $from_name  Sender name
+ * @param  array $addresses  It is array of addresses. Can have as items strings with emails and assocciative parts like 'name' => 'email'
+ * @param  String $body       Email body
+ * @param  string $alt_body   altrentaive email body with the same data as $body. Will be displayed when not is displayed normal email body.
+ * @param  string $attach     path to some file like pdf or jpg attacjment
+ * @return integer             If is success return 1.
+ */
   public function writeEmail($subject, $from_email, $from_name, $addresses, $body, $alt_body = '', $attach = '')
   {
     //mail ru creds: maile: crm.clone@mail.ru pwd: secretsecret
