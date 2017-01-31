@@ -20,7 +20,7 @@ class MailControllerTest extends TestCase
   public function testWriteEmail()
   {
     $mc = new MailController();
-    $this->assertTrue($mc->writeEmail(
+    $this->assertEquals(1, $mc->writeEmail(
       'First email from localhost',
       'crm.clone@mail.ru',
       'CRM clone',

@@ -17,6 +17,7 @@ class MailController extends Controller
   public function writeEmail($subject, $from_email, $from_name, $addresses, $body, $alt_body = '', $attach = '')
   {
     //mail ru creds: maile: crm.clone@mail.ru pwd: secretsecret
+    // IPORTANT: mail ru is stupid fucking server. It want work only with ssl
     $transport = \Swift_SmtpTransport::newInstance('smtp.mail.ru', 465, 'ssl')
       ->setUsername('crm.clone@mail.ru')
       ->setPassword('secretsecret');
@@ -48,7 +49,7 @@ class MailController extends Controller
 
     if ($attach !== '') {
       // file attachments
-      $message->attach(\Swift_Attachment::fromPath('attachment.pdf'));
+      $message->attach(\Swift_Attachment::fromPath($attach));
     }
 
     // send the message
