@@ -3,10 +3,10 @@
 @section('title') Email @endsection
 
 @section('content')
-  <div class="container app">
+  <div class=" mail-container app">
   <aside class="sidebar">
     <h1 class="logo">
-      <a href="#">Simpl<strong>est</strong></a>
+      <a href="{{route('mail')}}">Email</a>
     </h1>
     <nav class="main-nav">
       <ul>
@@ -40,13 +40,14 @@
       </form>
       <nav class="nav-settings">
         <ul>
-          <li><a href="#">Gregoire Vella</a></li>
+          <li><a href="#"></a></li>
+
           <li><a href="#" class="icon icon-gear"></a></li>
         </ul>
       </nav>
       <div class="clr"></div>
     </header>
-    <div class="container">
+    <div class=" mail-container">
       <div class="messages">
         <h1>Inbox <span class="icon icon-arrow-down"></span></h1>
         <form action="">
@@ -149,7 +150,7 @@
             <textarea name="r">Hello Jeremy,
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit qui impedit magni fuga velit nobis quas fugit odio voluptas voluptates odit animi quos nam dolorem harum molestiae culpa sint rem ad esse laboriosam vero quod molestias porro ea dolores eligendi!
             </textarea>
-            <div class="fileupload mail-container">
+            <div class="fileupload mail- mail-container">
               <span class="fileinfo">My file enclosed.pdf</span>
               <div class="progress">
                 <div class="bar">65%</div>

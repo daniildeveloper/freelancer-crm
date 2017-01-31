@@ -1,3 +1,3 @@
 <li>
-  <a href="#">Some</a>
+  <a href="{{route('mail')}}">Почта</a>
 </li>

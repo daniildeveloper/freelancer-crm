@@ -3,9 +3,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-}
 
 .clr {
   clear: both;
@@ -133,6 +130,7 @@ a {
   width: 500px;
   padding: 0 10px;
   outline: none;
+  color: #fff;
 }
 .main .header form input[type="search"]::-webkit-input-placeholder {
   color: #fff;
