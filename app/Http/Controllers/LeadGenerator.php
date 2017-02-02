@@ -111,7 +111,7 @@ class LeadGenerator extends Controller
         }
 
         if ($status === 3) {
-          $message = 'Ура, проект закончен!';
+          $message = 'Ура, проект закончен! ';
         }
 
         return redirect()->back([
