@@ -55,7 +55,7 @@ class MailController extends Controller
     // charset to utf8
     $message->setCharset('iso-8859-2');
 
-    //give the msessage subject
+    //give the message subject
     $message->setSubject($subject);
 
     //set from address with an assoc array
