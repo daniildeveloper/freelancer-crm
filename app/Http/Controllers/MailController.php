@@ -12,12 +12,12 @@ use PhpImap\IncomingMailAttachment;
 
 class MailController extends Controller
 {
-  $email_domain_name = 'mail.ru';
-  $email_smtp_port = 465;
-  $email_imap_port = 993;
-  $email_encrypt_connection_type = 'ssl';
-  $email_username = 'crm.clone@mail.ru';
-  $email_pwd = 'secretsecret';
+  // protected $email_domain_name = 'mail.ru';
+  // protected $email_smtp_port = 465;
+  // protected $email_imap_port = 993;
+  // protected $email_encrypt_connection_type = 'ssl';
+  // protected $email_username = 'crm.clone@mail.ru';
+  // protected $email_pwd = 'secretsecret';
 
   /**
    * This function return view with index of mail client
@@ -117,8 +117,7 @@ class MailController extends Controller
     return response()->json([
       'slug'        => $slugObj->slug,
       'body'        => $slugObj->body,
-      'attachments' => slugObj->attachments,
-    ]);
+      'attachments' => $slugObj->attachments]);
   }
 
   /**
